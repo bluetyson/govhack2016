@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Name Of Project</title>
+
+        <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+        <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
+        <script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.0/Chart.bundle.min.js"></script>
+    </head>
+
+    <body>
+        <div>
+            <!-- nav block can be overridden -->
+            {% block nav %}
+                <nav class="navbar navbar-inverse">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="#">Project name</a>
+                        </div>
+                    </div>
+                </nav>
+            {% endblock %}
+        </div>
+
+
+        <div class="container-fluid">
+            {# One-time system messages called Flash messages #}
+                {% block flash_messages %}
+                    {%- with messages = get_flashed_messages(with_categories=true) -%}
+                        {% if messages %}
+                            {% for category, message in messages %}
+                                {% if category=='error' %}
+                                    {% set category='danger' %}
+                                    {% endif %}
+                                    <div class="alert alert-{{category}}">{{ message|safe }}</div>
+                                {% endfor %}
+                        {% endif %}
+                {%- endwith %}
+            {% endblock %}
+        </div>
+
+        <div class="container">
+            {% block content %}
+
+            {% endblock %}
+
+            {% block footer %}
+                <br>
+                <hr>
+                <footer>
+                    <p>&copy; 2016 Company, Inc.</p>
+                </footer>
+            {% endblock %}
+
+
+        </div>
+
+    </body>
+<html>
+
