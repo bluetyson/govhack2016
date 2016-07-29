@@ -6,7 +6,7 @@ app = Flask(__name__)
 #TODO: change hello world route
 @app.route('/')
 def hello_world():
-    return 'Hello World!'
+    return render_template('frontpage.html')
 
 @app.route('/form')
 def biz_form():
