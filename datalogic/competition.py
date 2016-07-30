@@ -26,12 +26,7 @@ def get_competition(industry, SA_code, employees=0):
         elif employees > 200:
             columns = [7, 13, 19]
 
-
         return dict(zip(num_businesses, columns))
-
-
-
-
 
     cur.close()
     conn.close()
