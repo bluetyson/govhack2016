@@ -1,3 +1,7 @@
+# db deps
+psycopg2
+
+# web framework
 Flask==0.11
 
 # Flask Dependencies
@@ -12,3 +16,6 @@ blinker
 pytest==2.7.2
 pytest-flask==0.8.1
 pytest-cov==1.8.1
+
+# prod webserver
+gunicorn
