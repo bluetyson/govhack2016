@@ -2,19 +2,38 @@
 
 {% block content %}
 {%raw%}
+<div class="col-md-6">
+    <img src="static/img/BizHack_Logo.png" style="width:100%;">
+</div>
+<div ng-controller="BizAppFormCtrl" class="form-horizontal jumbotron">
+    <label class="margin-top-10">Business Name</label>
+    <input ng-model="bizName" type="text" class="form-control"/>
 
-<script src="static/js/ngForm.js"></script>
-<div ng-controller="formController">
+    <label class="margin-top-10">Classification</label>
+    <select ng-model="bizClassification" ng-init="bizClassification=classifications[0]" ng-options="classification for classification in classifications" class="form-control"></select>
 
-    <div class = 'jumbotron'>
-        <h1>Results</h1>
-        <div class = 'container'>
-            <div>{{data1}}</div>
-            <div>{{data2}}</div>
-        </div>
-    </div>
+    <label class="margin-top-10">Business Address</label>
+    <input ng-model="bizAddress" g-places-autocomplete class="form-control"/>
 
+    <!--<label class="margin-top-10">Postcode</label>-->
+    <!--<input ng-model="bizPostcode" class="form-control"/>-->
 
+    <label class="margin-top-10">ABN</label>
+    <input ng-model="bizABN" type="text" class="form-control"/>
+
+    <label class="margin-top-10">Number of Employees</label>
+    <input ng-model="bizNumberOfEmployees" type="number" step="1" class="form-control"/>
+
+    <label class="margin-top-10">Annual Revenue</label>
+    <input ng-model="bizAnnualRevenue" type="number" step=".01" class="form-control"/>
+
+    <label class="margin-top-10">Desired Additional Staff</label>
+    <select ng-model="bizDesiredAdditionalStaffRange" ng-init="bizDesiredAdditionalStaffRange=desiredAdditionalStaffRanges[0]" ng-options="desiredAdditionalStaffRange for desiredAdditionalStaffRange in desiredAdditionalStaffRanges" class="form-control"></select>
+
+    <label class="margin-top-10">Business Age</label>
+    <select ng-model="bizAge" ng-init="bizAge=ages[0]" ng-options="age for age in ages" class="form-control"></select>
+
+    <button ng-click="submit()" class="form-control margin-top btn-primary">Submit</button>
 </div>
 {%endraw%}
 {% endblock %}
