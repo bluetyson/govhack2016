@@ -1,25 +1,33 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="jumbotron">
-    <div class="container">
-        <h1>Hello, world!</h1>
-        <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-        <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
-    </div>
-</div>
+{%raw%}
+<div ng-controller="frontPageController" >
 
-<!-- Example row of columns -->
-<div class="row">
-    <div class="col-md-6">
-        <h2>sumbit form</h2>
-        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-        <p><a class="btn btn-success" href="{{ url_for('biz_form') }}" role="button">Check out form page &raquo;</a></p>
+    <div class="jumbotron">
+        <div class="container" >
+            <img src="static/img/BizHack_Logo.png" style="width:70%;">
+            <p>Here is basic description of the application, and how it works for new users. Please click on the
+            button below to learn more about this application, and the specifics of how this technology works! or something</p>
+            <p><a class="btn btn-primary btn-lg" href="about" role="button">Learn more &raquo;</a></p>
+        </div>
     </div>
-    <div class="col-md-6">
-        <h2>results page</h2>
-        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-        <p><a class="btn btn-success" href="{{ url_for('biz_result') }}" role="button">Look at fancy graphs! &raquo;</a></p>
+
+    <!-- Example row of columns -->
+    <div class="row" style="background-image:url('static/img/gisBanner.jpg');border-radius:10px;">
+        <div class="col-md-6">
+            <h2>{{submit}}</h2>
+            <p> {{submitDescription}}</p>
+            <p><a class="btn btn-success" href="form" role="button">{{submitButton}}</a></p>
+        </div>
+        <!--
+        <div class="col-md-6">
+            <h2>results page</h2>
+            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+            <p><a class="btn btn-success" href="result" role="button">Look at fancy graphs! &raquo;</a></p>
+        </div>
+        -->
     </div>
 </div>
+{%endraw%}
 {% endblock %}

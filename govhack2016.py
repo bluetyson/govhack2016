@@ -19,7 +19,7 @@ def biz_result():
     return render_template('result.html')
 
 # additional files to check for reloader
-extra_dirs = ['templates',]
+extra_dirs = ['templates','static']
 extra_files = extra_dirs[:]
 for extra_dir in extra_dirs:
     for dirname, dirs, files in os.walk(extra_dir):
