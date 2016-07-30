@@ -28,11 +28,7 @@ def biz_about():
 @app.route('/query/<urlquery>', methods=['POST'])
 def query(urlquery):
     urlquery = urlquery.lower()
-    print(request.get_json(force=True))
-    # data = json.loads(request.get_json(force=True))
     data = request.get_json(force=True)
-
-    print(data)
 
     if data == '':
         val = json.dumps({"Error": "No data sent"})
@@ -54,6 +50,8 @@ def query(urlquery):
 def query_test(urlquery):
     urlquery = urlquery.lower()
 
+    if urlquery == '':
+        val = json.dumps({"Error": "Not a valid url query"})
     if urlquery == "competition":
         val = json.dumps(competition.get_competition("Agriculture, Forestry and Fishing", 101011001))
     elif urlquery == "avgperson":
@@ -63,7 +61,7 @@ def query_test(urlquery):
     elif urlquery == "survivability":
         val= json.dumps(survivability.survivability('Agriculture', 'VIC', 0, 1500000))
     else:
-        val = json.dumps({"Error": "Not a valid url query"})
+        val = json.dumps({"Error": "No data sent"})
     return val
 
 
