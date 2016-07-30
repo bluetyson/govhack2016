@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html ng-app="BizHackFormApp" lang="en">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,15 +7,25 @@
 
         <title>Name Of Project</title>
 
+        <!-- Angular -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+
+        <!-- Address Search -->
+        <script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyDy8fiBlzv4fvOAwMZRtScM6ZvhDCvyWGA"></script>
+        <script src="/static/libraries/angular-google-places-autocomplete-master/src/autocomplete.js"></script>
+        <link rel="stylesheet" href="/static/libraries/angular-google-places-autocomplete-master/src/autocomplete.css">
+
         <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
         <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
         <script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
         <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.0/Chart.bundle.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+
+        <!-- Our Angular Setup File -->
+        <script src="/static/js/angularConfig.js"></script>
     </head>
 
-    <body ng-app>
+    <body>
         <div>
             <!-- nav block can be overridden -->
             {% block nav %}

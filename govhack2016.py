@@ -1,4 +1,6 @@
 from flask import Flask, render_template
+import os
+from os import path
 
 app = Flask(__name__)
 
@@ -18,5 +20,21 @@ def biz_form():
 def biz_result():
     return render_template('result.html')
 
+@app.route('/db')
+def get_query():
+    return
+
+# additional files to check for reloader
+extra_dirs = ['templates','static']
+extra_files = extra_dirs[:]
+for extra_dir in extra_dirs:
+    for dirname, dirs, files in os.walk(extra_dir):
+        for filename in files:
+            filename = path.join(dirname, filename)
+            if path.isfile(filename):
+                extra_files.append(filename)
+
 if __name__ == '__main__':
-    app.run(app.run(host='0.0.0.0'))
+    app.run(extra_files=extra_files,use_reloader=True)
+
+
