@@ -1,14 +1,21 @@
 {% extends "base.html" %}
 
 {% block content %}
+{%raw%}
 
-
+<script src="static/js/ngForm.js"></script>
 <div ng-controller="formController">
 
-
+    <div class = 'jumbotron'>
+        <h1>Results</h1>
+        <div class = 'container'>
+            <div>{{data1}}</div>
+            <div>{{data2}}</div>
+        </div>
+    </div>
 
 
 </div>
-
+{%endraw%}
 {% endblock %}
 

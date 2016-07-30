@@ -1,11 +1,11 @@
 var app = angular.module('app',[]);
 
-app.controller('frontPageController', ['$scope', function($scope){
+app.controller('frontPageController', function($scope){
 
     $scope.title = 'BizHack';
     $scope.submit = 'Grow your business today!';
-    $scope.submitDescription = 'Enter details for your current business, or perhaps your desired future ' +
-        'business and start today!';
+    $scope.submitDescription = 'BizHack uses real world data to predict market trends and business demographics to ' +
+        'provide .... nevermind';
     $scope.submitButton = 'Start now';
 
-}]);
+});

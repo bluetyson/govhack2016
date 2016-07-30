@@ -22,6 +22,15 @@ def biz_result():
 def biz_about():
     return render_template('about.html')
 
+@app.route('/query/<string:type>',methods=['POST'])
+def query(type):
+    if type == 'competition':
+        return 'FRODO BAGGINSSSSS'#competition_algorithm()
+    if type == 'avgperson':
+        return {}
+
+
+
 # additional files to check for reloader
 extra_dirs = ['templates','static']
 extra_files = extra_dirs[:]
