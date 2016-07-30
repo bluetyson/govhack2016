@@ -18,6 +18,10 @@ def biz_form():
 def biz_result():
     return render_template('result.html')
 
+@app.route('/about')
+def biz_about():
+    return render_template('about.html')
+
 # additional files to check for reloader
 extra_dirs = ['templates','static']
 extra_files = extra_dirs[:]
