@@ -19,6 +19,8 @@ angular.module('app',['google.places'])
             $scope.data['employees'] = $scope.businessInformation.employees;
             $scope.data['revenue'] = $scope.businessInformation.revenue;
 
+
+
             console.log($scope.data);
             $scope.businessInformation.industry = $scope.businessInformation.industry;
             var data = angular.toJson($scope.businessInformation);
@@ -43,6 +45,9 @@ angular.module('app',['google.places'])
             $scope.avgLoad = true;
             $scope.availLoad = true;
 
+
+            $scope.noData = false;
+
             processResults($scope.data);
 
         };
@@ -52,13 +57,20 @@ angular.module('app',['google.places'])
             var ctx = document.getElementById("compGraph");
             // competition query and generate results graph here
             $http({
-                method:'GET',
-                url:'test/query/competition',
-               // data:formData
+                method:'POST',
+                url:'query/competition',
+                data:formData
 
             }).then(function success(resp) {
 
                 $scope.loading = false;
+
+                if (resp.data == null || resp.data == undefined || resp.data == 'null'){
+                    $scope.noData= true;
+                    return;
+                }
+
+
                 // competition data
                 var data = {
                     labels: [
@@ -97,9 +109,9 @@ angular.module('app',['google.places'])
 
             // survivability bar graph
             $http({
-                method:'GET',
-                url:'test/query/survivability',
-                //data: formData
+                method:'POST',
+                url:'query/survivability',
+                data: formData
 
             }).then(function success(resp){
                 var scatterChart = document.getElementById("surviveChart");
@@ -157,7 +169,11 @@ angular.module('app',['google.places'])
 
 
 
-            $http.get('test/query/avgperson').then(function success(resp){
+            $http({
+                url:'query/avgperson',
+                method:'POST',
+                data:formData
+            }).then(function success(resp){
                 $scope.avgLoad = false;
                 $scope.age = resp.data["Median Age"];
                 $scope.income = resp.data["Median Income"];
@@ -173,7 +189,11 @@ angular.module('app',['google.places'])
 
 
 
-            $http.get('test/query/labouravail').then(function success(resp){
+            $http({
+                url:'query/labouravail',
+                method:'POST',
+                data:formData
+            }).then(function success(resp){
 
                 $scope.availLoad = false;
 

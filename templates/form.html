@@ -44,6 +44,7 @@
             <div class="col-md-6">
                 <h2 class="text-center">Competition</h2>
                 <p>This graphic shows how the total number of similar businesses in your area has evolved over the past few years.</p>
+                <h2 ng-show="noData">No data in your area!</h2>
                 <div style="text-align:center"><img  src="static/img/loading.gif" ng-show="loading"></div>
                 <canvas id="compGraph" width="200px" height="200px" ng-hide="loading"></canvas>
             </div>
