@@ -88,7 +88,7 @@ def query_test(urlquery):
     elif urlquery == "avgperson":
         val = json.dumps(average_person.average_person(2600))
     elif urlquery == "labouravail":
-        val = json.dumps(labour_availability.labour_availability(5052))
+        val = json.dumps(labour_availability.labour_availability(2600))
     elif urlquery == "survivability":
         val= json.dumps(survivability.survivability('Agriculture', 'VIC', 0, 1500000))
     else:
@@ -98,7 +98,7 @@ def query_test(urlquery):
 
 @app.route("/test/postcode/<urlquery>", methods=['GET'])
 def postcode_conv(urlquery):
-    return json.dumps(postcode_converter.postcode_converter(urlquery, 4, "num"))
+    return json.dumps(postcode_converter.postcode_converter(urlquery, 4, "name"))
 
 if __name__ == '__main__':
     app.run(debug=True)
