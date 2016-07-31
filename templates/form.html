@@ -1,35 +1,80 @@
 {% extends "base.html" %}
 
 {% block content %}
+<!-- Angular Config -->
+<script src="/static/js/ngForm.js"></script>
+
 {%raw%}
 <img src="static/img/BizHack_Logo.png" style="width:100%;">
 <br/>
-<div ng-controller="BizAppFormCtrl" ng-show="formDisplay" class="form-horizontal jumbotron">
-    <label class="margin-top-10">Business Name</label>
-    <input ng-model="businessInformation.bizName" type="text" title="Your Business Name" class="form-control"/>
+<div ng-controller="BizAppFormCtrl" >
+    <form ng-show="formDisplay" class="form-horizontal jumbotron">
+        <label class="margin-top-10">Business Name</label>
+        <input ng-model="businessInformation.bizName" type="text" title="Your Business Name" class="form-control"/>
 
-    <label class="margin-top-10">Classification</label>
-    <select ng-model="businessInformation.bizClassification" title="Your Business Classification" ng-init="businessInformation.bizClassification=classifications[0]" ng-options="classification for classification in classifications" class="form-control"></select>
+        <label class="margin-top-10">Classification</label>
+        <select ng-model="businessInformation.bizClassification" required title="Your Business Classification" ng-init="businessInformation.bizClassification=classifications[0]" ng-options="classification for classification in classifications" class="form-control"></select>
 
-    <label class="margin-top-10">Business Address</label>
-    <input ng-model="businessInformation.bizAddress" title="Your Business Address" g-places-autocomplete class="form-control"/>
+        <label class="margin-top-10">Business Address</label>
+        <input ng-model="businessInformation.bizAddress" required title="Your Business Address" g-places-autocomplete class="form-control"/>
 
-    <label class="margin-top-10">ABN</label>
-    <input ng-model="businessInformation.bizABN" title="Your ABN" type="text" class="form-control"/>
+        <label class="margin-top-10">ABN</label>
+        <input ng-model="businessInformation.bizABN" title="Your ABN" type="text" class="form-control"/>
 
-    <label class="margin-top-10">Number of Employees</label>
-    <input ng-model="businessInformation.bizNumberOfEmployees" title="Your Business's Number of Employees" type="number" step="1" class="form-control"/>
+        <label class="margin-top-10">Number of Employees</label>
+        <input ng-model="businessInformation.bizNumberOfEmployees" required title="Your Business's Number of Employees" type="number" step="1" class="form-control"/>
 
-    <label class="margin-top-10">Annual Revenue</label>
-    <input ng-model="businessInformation.bizAnnualRevenue" title="Your Business's Annual Revenue" type="number" step=".01" class="form-control"/>
+        <label class="margin-top-10">Annual Revenue</label>
+        <input ng-model="businessInformation.bizAnnualRevenue" title="Your Business's Annual Revenue" type="number" step=".01" class="form-control"/>
 
-    <label class="margin-top-10">Desired Additional Staff</label>
-    <select ng-model="businessInformation.bizDesiredAdditionalStaffRange" title="Your Business's Additional Staffing Requirements" ng-init="businessInformation.bizDesiredAdditionalStaffRange=desiredAdditionalStaffRanges[0]" ng-options="desiredAdditionalStaffRange for desiredAdditionalStaffRange in desiredAdditionalStaffRanges" class="form-control"></select>
+        <label class="margin-top-10">Desired Additional Staff</label>
+        <select ng-model="businessInformation.bizDesiredAdditionalStaffRange" title="Your Business's Additional Staffing Requirements" ng-init="businessInformation.bizDesiredAdditionalStaffRange=desiredAdditionalStaffRanges[0]" ng-options="desiredAdditionalStaffRange for desiredAdditionalStaffRange in desiredAdditionalStaffRanges" class="form-control"></select>
 
-    <label class="margin-top-10">Business Age</label>
-    <select ng-model="businessInformation.bizAge" title="Your Business's Age in years" ng-init="bizAge=ages[0]" ng-options="age for age in ages" class="form-control"></select>
+        <label class="margin-top-10">Business Age</label>
+        <select ng-model="businessInformation.bizAge" title="Your Business's Age in years" ng-init="bizAge=ages[0]" ng-options="age for age in ages" class="form-control"></select>
 
-    <button ng-click="submit()" class="form-control margin-top btn-primary">Submit</button>
+        <button ng-click="submit()" type='submit' class="form-control margin-top btn-primary">Submit</button>
+
+    </form>
+
+
+    <div ng-hide="formDisplay">
+
+        <div class="row">
+            <div class="col-md-6">
+                <h2 class="text-center">Competition</h2>
+                <div style="text-align:center"><img  src="static/img/loading.gif" ng-show="loading"></div>
+                <canvas id="compGraph" width="200px" height="200px" ng-hide="loading"></canvas>
+            </div>
+            <div class="col-md-6">
+                <h2 class="text-center">Averages</h2>
+                <div class="jumbotron"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <p>
+
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <h2 class="text-center">Survivability</h2>
+                <div style="text-align:center"><img  src="static/img/loading.gif" ng-show="survLoad"></div>
+                <canvas id="surviveChart" width="200px" height="200px" ng-hide="survLoad"></canvas>
+            </div>
+            <div class="col-md-6">
+                <h2 class="text-center">Job Availability</h2>
+                <canvas id="availChart" width="200px" height="200px"></canvas>
+            </div>
+        </div>
+
+
+
+    </div>
+
+
 </div>
 {%endraw%}
 {% endblock %}
