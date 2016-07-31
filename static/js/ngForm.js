@@ -80,7 +80,7 @@ angular.module('app',['google.places'])
                     ],
                     datasets: [
                         {
-                            data: [resp.data['2014'][0], resp.data['2013'][0], resp.data['2012'][0]],
+                            data: [resp.data['2014'][0]/1000, resp.data['2013'][0]/1000, resp.data['2012'][0]/1000],
                             backgroundColor: [
                                 "#FF6384",
                                 "#36A2EB",
