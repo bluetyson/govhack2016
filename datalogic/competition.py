@@ -38,13 +38,21 @@ def get_competition(industry, SA_code, employees=0):
     for line in cur.fetchall():
         counts.extend(line)
 
-    print(counts)
-    print(num_businesses)
+    counts = list(map(int, counts))
+    aggeragateData = list(zip(num_businesses, counts))
+
+    years = ["2014","2013","2012"]
+    x = {}
+    i = 0
+    for year in years:
+        x[year] = aggeragateData[i]
+        i += i
+
 
     cur.close()
     conn.close()
 
-    return dict(zip(num_businesses, counts))
+    return dict(x)
 
 
 

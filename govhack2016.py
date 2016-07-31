@@ -33,7 +33,7 @@ def query(urlquery):
     if data == '':
         val = json.dumps({"Error": "No data sent"})
     if urlquery == 'competition':
-        # returns json {TotalNumOfBusiness: EmployeesInIndustryBySaCode, ...}
+        # returns json {Year: [TotalNumOfBusiness, EmployeesInIndustryBySaCode], ...}
         val = json.dumps(competition.get_competition(data['industry'], data['sa_code']))
     elif urlquery == "avgperson":
         # returns json {medianIncome/quater: IntValue, ....}
