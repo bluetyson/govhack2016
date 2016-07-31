@@ -37,7 +37,7 @@ def query(urlquery):
         # returns json {Year: [TotalNumOfBusiness, EmployeesInIndustryBySaCode], ...}
 
         val = json.dumps(competition.get_competition(industry_converter.industry_converter(data['industry']),
-                                                     postcode_converter.postcode_converter(['postcode'], 2)
+                                                     postcode_converter.postcode_converter(['postcode'])
                                                      ))
     elif urlquery == "avgperson":
         # returns:
@@ -54,7 +54,7 @@ def query(urlquery):
         val = json.dumps(average_person.average_person(data['postcode']))
     elif urlquery == "labouravail":
         # returns json {DateOfCount: LaborAvailNum, ...}
-        val = json.dumps(labour_availability.labour_availability(data['postcode'], 3))
+        val = json.dumps(labour_availability.labour_availability(data['postcode']))
 
     elif urlquery == "survivability":
         # returns
@@ -83,7 +83,8 @@ def query_test(urlquery):
     if urlquery == '':
         val = json.dumps({"Error": "Not a valid url query"})
     if urlquery == "competition":
-        val = json.dumps(competition.get_competition(industry_converter.industry_converter("Mining"), 2616))
+        val = json.dumps(competition.get_competition(industry_converter.industry_converter("unknown")
+                                                     , 2617))
     elif urlquery == "avgperson":
         val = json.dumps(average_person.average_person(2600))
     elif urlquery == "labouravail":
@@ -117,7 +118,7 @@ def query_test(urlquery):
     # Unknown
 @app.route("/test/postcode/<urlquery>", methods=['GET'])
 def postcode_conv(urlquery):
-    return json.dumps(postcode_converter.postcode_converter(urlquery, 2, "name"))
+    return json.dumps(postcode_converter.postcode_converter(urlquery, 2, "num"))
 
 @app.route("/test/industryconv/<urlquery>", methods=['GET'])
 def industry_conv(urlquery):
