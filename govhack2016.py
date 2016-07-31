@@ -35,7 +35,6 @@ def query(urlquery):
         val = json.dumps({"Error": "No data sent"})
     if urlquery == 'competition':
         # returns json {Year: [TotalNumOfBusiness, EmployeesInIndustryBySaCode], ...}
-
         val = json.dumps(competition.get_competition(industry_converter.industry_converter(data['industry']),
                                                      postcode_converter.postcode_converter(['postcode'])
                                                      ))
@@ -90,7 +89,7 @@ def query_test(urlquery):
     elif urlquery == "labouravail":
         val = json.dumps(labour_availability.labour_availability(2600))
     elif urlquery == "survivability":
-        val= json.dumps(survivability.survivability('Agriculture', 'VIC', 0, 1500000))
+        val= json.dumps(survivability.survivability('Mining', 'ACT', 0, 1500000))
     else:
         val = json.dumps({"Error": "No data sent"})
     return val
@@ -126,3 +125,6 @@ def industry_conv(urlquery):
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+
+
