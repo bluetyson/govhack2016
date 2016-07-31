@@ -35,6 +35,7 @@ def query(urlquery):
     if urlquery == 'competition':
         val = json.dumps(competition.get_competition(data['industry'], data['sa_code']))
     elif urlquery == "avgperson":
+        # returns json in medianIncome/quater: IntValue
         val = json.dumps(average_person.average_person(data.postcode))
     elif urlquery == "labouravail":
         val = json.dumps(labour_availability.labour_availability(data.postcode))
