@@ -25,7 +25,7 @@ def survivability_by_employees(industry, employees, state):
     query = "SELECT * FROM survival_rates_employee WHERE field_1='" + str(industry) + "'"
     cur.execute(query)
 
-    if not cur.fetchall():
+    if len(cur.fetchall()) !=4 :
         return None
 
     line = cur.fetchall()[states[state]]

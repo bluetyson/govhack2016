@@ -40,6 +40,8 @@ angular.module('app',['google.places'])
             $scope.formDisplay = false;
             $scope.loading = true;
             $scope.survLoad = true;
+            $scope.avgLoad = true;
+            $scope.availLoad = true;
 
             processResults($scope.data);
 
@@ -50,9 +52,9 @@ angular.module('app',['google.places'])
             var ctx = document.getElementById("compGraph");
             // competition query and generate results graph here
             $http({
-                method:'POST',
-                url:'query/competition',
-                data:formData
+                method:'GET',
+                url:'test/query/competition',
+               // data:formData
 
             }).then(function success(resp) {
 
@@ -95,9 +97,9 @@ angular.module('app',['google.places'])
 
             // survivability bar graph
             $http({
-                method:'POST',
-                url:'query/survivability',
-                data: formData
+                method:'GET',
+                url:'test/query/survivability',
+                //data: formData
 
             }).then(function success(resp){
                 var scatterChart = document.getElementById("surviveChart");
@@ -153,39 +155,75 @@ angular.module('app',['google.places'])
 
              });
 
-            var radarChart = document.getElementById("availChart")
-            var myRadarChart = new Chart(radarChart, {
-                type: 'radar',
-                data: {
-                    labels: ["Eating", "Drinking", "Sleeping", "Designing", "Coding", "Cycling", "Running"],
-                    datasets: [
-                        {
-                            label: "My First dataset",
-                            backgroundColor: "rgba(179,181,198,0.2)",
-                            borderColor: "rgba(179,181,198,1)",
-                            pointBackgroundColor: "rgba(179,181,198,1)",
-                            pointBorderColor: "#fff",
-                            pointHoverBackgroundColor: "#fff",
-                            pointHoverBorderColor: "rgba(179,181,198,1)",
-                            data: [65, 59, 90, 81, 56, 55, 40]
-                        },
-                        {
-                            label: "My Second dataset",
-                            backgroundColor: "rgba(255,99,132,0.2)",
-                            borderColor: "rgba(255,99,132,1)",
-                            pointBackgroundColor: "rgba(255,99,132,1)",
-                            pointBorderColor: "#fff",
-                            pointHoverBackgroundColor: "#fff",
-                            pointHoverBorderColor: "rgba(255,99,132,1)",
-                            data: [28, 48, 40, 19, 96, 27, 100]
-                        }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false
-                }
+
+
+            $http.get('test/query/avgperson').then(function success(resp){
+                $scope.avgLoad = false;
+                $scope.age = resp.data["Median Age"];
+                $scope.income = resp.data["Median Income"];
+                $scope.kids = resp.data["dependent_children"];
+                $scope.educ = resp.data["education"];
+                $scope.marry = resp.data["marital_status"];
+                $scope.rent = resp.data["rent"].join('-');
+                $scope.cars  = resp.data["cars"];
+                $scope.net = resp.data["internet"];
+
             });
+
+
+
+
+            $http.get('test/query/labouravail').then(function success(resp){
+
+                $scope.availLoad = false;
+
+                var radarChart = document.getElementById("availChart");
+                //TTEEGDGDGDG
+                // create data structure for graph
+                var labels = [];
+                var data = [];
+                var dataStruct = {'labels':[],'datasets':[]};
+
+
+                var backgroundColor =[
+                    'rgba(255, 0, 0, 0.2)',
+                    'rgba(0, 0, 255, 0.2)'
+                ];
+
+                for (type in resp.data) {
+
+                    labels.push(type);
+                    data.push(parseInt(resp.data[type]));
+
+
+
+                }
+                dataStruct.labels = labels;
+                dataStruct['datasets'].push({'label':"Job Availability",'data':data,'backgroundColor':backgroundColor});
+
+
+                var myBarChart = new Chart(radarChart, {
+                    type: 'bar',
+                    data: dataStruct,
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            yAxes: [{
+                                display: true,
+                                ticks: {
+                                    suggestedMin: 0,    // minimum will be 0, unless there is a lower value.
+                                    // OR //
+                                    beginAtZero: true   // minimum value will be 0.
+                                }
+                            }]
+                        }
+                    }
+                });
+
+
+            });
+
         }
 
     });
