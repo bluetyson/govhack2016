@@ -48,7 +48,33 @@
             </div>
             <div class="col-md-6">
                 <h2 class="text-center">Averages</h2>
-                <div class="jumbotron"></div>
+
+                <style>
+                    .average_person {
+                        width: 600px;
+                        height: 300px;
+                        border: 1px solid black;
+                    }
+
+                    .average_person img {
+                        float: left;
+                        height: 280px;
+                        padding-right: 20px;
+                        padding-top: 20px;
+                    }
+                </style>
+                <div class="average_person">
+                    <img src="static/img/profile.png" />
+                    <p>Median Age:</p>
+                    <p>Median Income:</p>
+                    <p>Dependent Children:</p>
+                    <p>Education Level:</p>
+                    <p>Marital Status:</p>
+                    <p>Weekly Rent:</p>
+                    <p>Number of Cars:</p>
+                    <p>Internet Connection Type:</p>
+                </div>
+
             </div>
         </div>
         <div class="row">
@@ -61,6 +87,8 @@
         <div class="row">
             <div class="col-md-6">
                 <h2 class="text-center">Survivability</h2>
+                <p>This graph shows the proportion of businesses in your region with similar turnover and number of
+                    employees that survive over time. Data is displayed as a percentage of the original sample.</p>
                 <div style="text-align:center"><img  src="static/img/loading.gif" ng-show="survLoad"></div>
                 <canvas id="surviveChart" width="200px" height="200px" ng-hide="survLoad"></canvas>
             </div>
