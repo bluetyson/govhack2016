@@ -7,8 +7,12 @@ angular.module('app',['google.places'])
         $scope.ages = ['0', '1 - 5', '6 - 20', '> 20'];
 
         $scope.submit = function() {
-            $scope.businessInformation.postcode = $scope.businessInformation.bizAddress.address_components[$scope.businessInformation.bizAddress.address_components.length-1].long_name;
-            $scope.businessInformation.industry = $scope.businessInformation.classification;
+            $scope.businessInformation.postcode = $scope.businessInformation.bizAddress
+                .address_components[$scope.businessInformation.bizAddress.address_components.length-1].long_name;
+            $scope.businessInformation.state = $scope.businessInformation.bizAddress
+                .address_components[$scope.businessInformation.bizAddress.address_components.length-3].short_name;
+
+            $scope.businessInformation.industry = $scope.businessInformation.industry;
             var data = angular.toJson($scope.businessInformation);
             // $http({
             //     url: '/query/competition',
@@ -37,7 +41,13 @@ angular.module('app',['google.places'])
 
             var ctx = document.getElementById("compGraph");
             // competition query and generate results graph here
-            $http.get('test/query/competition').then(function success(resp) {
+            $http({
+                method:'POST',
+                url:'query/competition',
+                data:formData
+
+            }).then(function success(resp) {
+
                 $scope.loading = false;
                 // competition data
                 var data = {

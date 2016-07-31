@@ -29,12 +29,12 @@ def biz_about():
 def query(urlquery):
     urlquery = urlquery.lower()
     data = request.get_json(force=True)
-
+    print(data)
     if data == '':
         val = json.dumps({"Error": "No data sent"})
     if urlquery == 'competition':
         # returns json {Year: [TotalNumOfBusiness, EmployeesInIndustryBySaCode], ...}
-        val = json.dumps(competition.get_competition(data['industry'], data['sa_code']))
+        val = json.dumps(competition.get_competition(data['industry'], data['postcode']))
     elif urlquery == "avgperson":
         # returns:
         # {
@@ -47,10 +47,10 @@ def query(urlquery):
         #     "dependent_children": Long,
         #     "Median Age": Int
         # }
-        val = json.dumps(average_person.average_person(data.postcode))
+        val = json.dumps(average_person.average_person(data['postcode']))
     elif urlquery == "labouravail":
         # returns json {DateOfCount: LaborAvailNum, ...}
-        val = json.dumps(labour_availability.labour_availability(data.postcode))
+        val = json.dumps(labour_availability.labour_availability(data['postcode']))
     elif urlquery == "survivability":
         # returns
         #      {"survival_by_employee":
@@ -60,7 +60,7 @@ def query(urlquery):
         #             YearsInBusiness: PercentageStillInBusiness,
         #             ....
         #       }
-        val = json.dumps(survivability.survivability(data.industry, data.state, data.employees, data.turnover))
+        val = json.dumps(survivability.survivability(data['industry'], data['state'], data['employees'], data['revenue']))
     else:
         val = json.dumps({"Error": "Not a valid url query"})
 

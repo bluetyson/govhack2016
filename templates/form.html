@@ -13,7 +13,7 @@
         <input ng-model="businessInformation.bizName" type="text" title="Your Business Name" class="form-control"/>
 
         <label class="margin-top-10">Classification</label>
-        <select ng-model="businessInformation.bizClassification" required title="Your Business Classification" ng-init="businessInformation.bizClassification=classifications[0]" ng-options="classification for classification in classifications" class="form-control"></select>
+        <select ng-model="businessInformation.industry" required title="Your Business Classification" ng-init="businessInformation.industry=classifications[0]" ng-options="classification for classification in classifications" class="form-control"></select>
 
         <label class="margin-top-10">Business Address</label>
         <input ng-model="businessInformation.bizAddress" required title="Your Business Address" g-places-autocomplete class="form-control"/>
@@ -22,7 +22,7 @@
         <input ng-model="businessInformation.bizABN" title="Your ABN" type="text" class="form-control"/>
 
         <label class="margin-top-10">Number of Employees</label>
-        <input ng-model="businessInformation.bizNumberOfEmployees" required title="Your Business's Number of Employees" type="number" step="1" class="form-control"/>
+        <input ng-model="businessInformation.employees" required title="Your Business's Number of Employees" type="number" step="1" class="form-control"/>
 
         <label class="margin-top-10">Annual Revenue</label>
         <input ng-model="businessInformation.bizAnnualRevenue" title="Your Business's Annual Revenue" type="number" step=".01" class="form-control"/>
