@@ -1,18 +1,21 @@
 import psycopg2
+from datalogic import postcode_converter
 
 # returns [TOTAL 2014, TOTAL 2013, TOTAL 2012, X Employees 2014, X Employees 2013, X Employees 2012] where X is the stated number of employees, if given
 # If employees not specified, will only return [TOTAL 2014, TOTAL 2013, TOTAL 2012]
 
 # requires pre prossesing for SA2 code & industry
-def get_competition(industry, SA_code, employees=0):
+def get_competition(industry, postcode, employees=0):
     conn = psycopg2.connect(dbname="govhack", user="govhack", password="govhack", host="107.155.108.51")
     cur = conn.cursor()
 
+    SA_code = postcode_converter.postcode_converter(postcode, 3)
     SA_code = str(SA_code)
 
     query = "SELECT * FROM business_employee_counts WHERE field_1='" + industry + "' AND field_2='" + SA_code + "'"
     cur.execute(query)
     num_businesses = []
+
     for line in cur.fetchall():
         num_businesses = [int(line[8])*1000, int(line[14])*1000, int(line[20])*1000]
         columns = []
