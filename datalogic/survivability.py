@@ -22,7 +22,7 @@ def survivability_by_employees(industry, employees, state):
     elif employees > 200:
         cols = [14, 24, 34, 44]
 
-    query = "SELECT * FROM survival_rates_employee WHERE field_1='" + industry + "'"
+    query = "SELECT * FROM survival_rates_employee WHERE field_1='" + str(industry) + "'"
     cur.execute(query)
 
     if not cur.fetchall():
