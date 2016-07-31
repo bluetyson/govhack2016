@@ -12,9 +12,19 @@ def postcode_converter(postcode, SA_number, num_or_name="num"):
     cur = conn.cursor()
 
     if num_or_name == "num":
-        query = "SELECT sa" + str(SA_number) + "_code FROM postcode_sa" + str(SA_number) + " WHERE postcode='" + str(postcode) + "'"
+        query = "SELECT sa" \
+                + str(SA_number) \
+                + "_code FROM postcode_sa" \
+                + str(SA_number) \
+                + " WHERE postcode='" \
+                + str(postcode) + "'"
     else:
-        query = "SELECT sa" + str(SA_number) + "_name FROM postcode_sa" + str(SA_number) + " WHERE postcode='" + str(postcode) + "'"
+        query = "SELECT sa" \
+                + str(SA_number) \
+                + "_name FROM postcode_sa" \
+                + str(SA_number) \
+                + " WHERE postcode='" \
+                + str(postcode) + "'"
     cur.execute(query)
     for line in cur.fetchall():
         return line[0]

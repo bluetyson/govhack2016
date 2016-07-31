@@ -15,7 +15,6 @@ def labour_availability(postcode):
     for line in cur.fetchall():
         val = {"Looking for full-time work": line[1], "Looking for part-time work": line[2]}
 
-
     cur.close()
     conn.close()
     return val
