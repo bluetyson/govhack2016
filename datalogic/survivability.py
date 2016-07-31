@@ -24,6 +24,10 @@ def survivability_by_employees(industry, employees, state):
 
     query = "SELECT * FROM survival_rates_employee WHERE field_1='" + industry + "'"
     cur.execute(query)
+
+    if not cur.fetchall():
+        return None
+
     line = cur.fetchall()[states[state]]
     return {"1 year": line[cols[0]], "2 years": line[cols[1]], "3 years": line[cols[2]], "4 years": line[cols[3]]}
 
@@ -54,7 +58,10 @@ def survivability_by_turnover(industry, turnover, state):
 
     query = "SELECT * FROM survival_rates_turnover WHERE field_1='" + industry + "'"
     cur.execute(query)
+    if not cur.fetchall():
+        return None
     line = cur.fetchall()[states[state]]
+
     return {"1 year": line[cols[0]], "2 years": line[cols[1]], "3 years": line[cols[2]], "4 years": line[cols[3]]}
 
     cur.close()
