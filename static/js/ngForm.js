@@ -7,36 +7,36 @@ angular.module('app',['google.places'])
         $scope.ages = ['0', '1 - 5', '6 - 20', '> 20'];
 
         $scope.submit = function() {
+
+            var obj =  $scope.businessInformation.bizAddress.address_components;
+            var postCode = '2601';
+            for (var idx in obj){
+                if (obj[idx].hasOwnProperty('types') && obj[idx].types[0] == 'postal_code'){
+                    postCode = obj[idx].short_name;
+                }
+            }
+
+
             $scope.businessInformation.postcode = $scope.businessInformation.bizAddress
                 .address_components[$scope.businessInformation.bizAddress.address_components.length-1].long_name;
             $scope.businessInformation.state = $scope.businessInformation.bizAddress
                 .address_components[$scope.businessInformation.bizAddress.address_components.length-3].short_name;
 
+            console.log();
+
             $scope.data = {}
             $scope.data['industry'] = $scope.businessInformation.industry;
-            $scope.data['postcode'] = $scope.businessInformation.postcode;
+            $scope.data['postcode'] = postCode;
             $scope.data['state'] = $scope.businessInformation.state;
             $scope.data['employees'] = $scope.businessInformation.employees;
             $scope.data['revenue'] = $scope.businessInformation.revenue;
 
 
 
-            console.log($scope.data);
+
             $scope.businessInformation.industry = $scope.businessInformation.industry;
             var data = angular.toJson($scope.businessInformation);
-            // $http({
-            //     url: '/query/competition',
-            //     method: "POST",
-            //     data: { 'data' : data }
-            // })
-            //     .then(function(response) {
-            //             console.log('Success');
-            //             $scope.formDisplay = false;
-            //             $scope.resultsDisplay = true;
-            //         },
-            //         function(response) {
-            //             alert('Networking Error, please try again later');
-            //         });
+
 
 
             $scope.formDisplay = false;

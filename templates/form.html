@@ -57,6 +57,8 @@
                         width: 600px;
                         height: 300px;
                         border: 1px solid black;
+                        border-radius:8px;
+                        padding: 5px 5px 5px 5px;
                     }
 
                     .average_person img {
@@ -65,17 +67,19 @@
                         padding-right: 20px;
                         padding-top: 20px;
                     }
+
+
                 </style>
                 <div class="average_person" ng-hide="avgLoad">
                     <img src="static/img/profile.png" />
-                    <p>Median Age:{{age}}</p>
-                    <p>Median Income:{{income}}</p>
-                    <p>Dependent Children:{{kids}}</p>
-                    <p>Education Level:{{educ}}</p>
-                    <p>Marital Status:{{marry}}</p>
-                    <p>Weekly Rent:{{rent}}</p>
-                    <p>Number of Cars:{{cars}}</p>
-                    <p>Internet Connection Type:{{net}}</p>
+                    <p><b>Median Age:</b> {{age}}</p>
+                    <p><b>Median Income:</b> {{income}}</p>
+                    <p><b>Dependent Children:</b> {{kids}}</p>
+                    <p><b>Education Level:</b> {{educ}}</p>
+                    <p><b>Marital Status:</b> {{marry}}</p>
+                    <p><b>Weekly Rent:</b> {{rent}}</p>
+                    <p><b>Number of Cars:</b> {{cars}}</p>
+                    <p><b>Internet Connection Type:</b> {{net}}</p>
                 </div>
 
             </div>
