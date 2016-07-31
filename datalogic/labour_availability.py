@@ -8,23 +8,13 @@ from datalogic import postcode_converter
 
 def labour_availability(postcode):
 
-    SA_code = postcode_converter.postcode_converter(postcode, 3, "name")
-
+    query = "SELECT * FROM looking_for_work WHERE postcode LIKE '%" + str(postcode) + "%'"
     conn = psycopg2.connect(dbname="govhack", user="govhack", password="govhack", host="107.155.108.51")
     cur = conn.cursor()
-
-    query = "SELECT * FROM job_services WHERE field_1='" + str(SA_code) + "'"
-
-    print(query)
     cur.execute(query)
-    count_by_date = {}
     for line in cur.fetchall():
-        if line[3] in count_by_date.keys():
-            count_by_date[line[3]] += int(line[-1])
-        else:
-            count_by_date[line[3]] = int(line[-1])
+        val = {"Looking for full-time work": line[1], "Looking for part-time work": line[2]}
 
     cur.close()
     conn.close()
-
-    return str(count_by_date)
+    return val
