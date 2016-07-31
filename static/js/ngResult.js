@@ -3,19 +3,12 @@
  */
 var app = angular.module('app',[]);
 
-
 app.controller('resultController',function($scope,$http){
-
     $scope.loading = true;
-
-
     var ctx = document.getElementById("compGraph");
-
     // competition query and generate results graph here
-    $http.get('test/query/avgperson').then(function success(resp){
-
+    $http.get('test/query/competition').then(function success(resp){
         $scope.loading = false;
-
         // competition data
         var data = {
             labels: [
@@ -25,7 +18,7 @@ app.controller('resultController',function($scope,$http){
             ],
             datasets: [
                 {
-                    data: [300, 50, 100],
+                    data: [resp.data['2014'][0], resp.data['2013'][0], resp.data['2012'][0]],
                     backgroundColor: [
                         "#FF6384",
                         "#36A2EB",
