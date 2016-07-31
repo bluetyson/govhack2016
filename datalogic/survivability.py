@@ -24,12 +24,19 @@ def survivability_by_employees(industry, employees, state):
 
     query = "SELECT * FROM survival_rates_employee WHERE field_1='" + str(industry) + "'"
     cur.execute(query)
+    #
+    # if not len(cur.fetchall()) > 7:
+    #     return None
 
-    if not cur.fetchall():
-        return None
+    for line in cur.fetchall():
+        # print(
+        #     {"1 year": line[cols[0]], "2 years": line[cols[1]], "3 years": line[cols[2]], "4 years": line[cols[3]]}
+        #       )
+        return {"1 year": line[cols[0]], "2 years": line[cols[1]], "3 years": line[cols[2]], "4 years": line[cols[3]]}
 
-    line = cur.fetchall()[states[state]]
-    return {"1 year": line[cols[0]], "2 years": line[cols[1]], "3 years": line[cols[2]], "4 years": line[cols[3]]}
+    # print(states[state])
+    # line = cur.fetchall()[states[state]]
+
 
     cur.close()
     conn.close()
@@ -58,11 +65,15 @@ def survivability_by_turnover(industry, turnover, state):
 
     query = "SELECT * FROM survival_rates_turnover WHERE field_1='" + industry + "'"
     cur.execute(query)
-    if not cur.fetchall():
-        return None
-    line = cur.fetchall()[states[state]]
+    # if not cur.fetchall():
+    #     return None
+    # line = cur.fetchall()[states[state]]
 
-    return {"1 year": line[cols[0]], "2 years": line[cols[1]], "3 years": line[cols[2]], "4 years": line[cols[3]]}
+    for line in cur.fetchall():
+        # print(
+        #     {"1 year": line[cols[0]], "2 years": line[cols[1]], "3 years": line[cols[2]], "4 years": line[cols[3]]}
+        # )
+        return {"1 year": line[cols[0]], "2 years": line[cols[1]], "3 years": line[cols[2]], "4 years": line[cols[3]]}
 
     cur.close()
     conn.close()
