@@ -9,7 +9,7 @@ def get_competition(industry, postcode, employees=0):
     conn = psycopg2.connect(dbname="govhack", user="govhack", password="govhack", host="107.155.108.51")
     cur = conn.cursor()
 
-    SA_code = postcode_converter.postcode_converter(postcode, 3)
+    SA_code = postcode_converter.postcode_converter(postcode, 2, "num")
 
     if SA_code is None or industry is None:
         return None
@@ -44,7 +44,7 @@ def get_competition(industry, postcode, employees=0):
             "field_" + str(columns[0]) + ", "\
             "field_" + str(columns[1]) + ", "\
             "field_" + str(columns[2]) + " "\
-            "FROM business_employee_counts WHERE field_1='" + industry + "' AND field_2='" + SA_code + "'"
+            "FROM business_employee_counts WHERE field_1='" + industry + "' AND field_2='" + str(SA_code) + "'"
     cur.execute(query)
 
     counts = list()
