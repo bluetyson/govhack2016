@@ -30,7 +30,7 @@ def biz_about():
 def query(urlquery):
     urlquery = urlquery.lower()
     data = request.get_json(force=True)
-
+    print(data)
     if data == '':
         val = json.dumps({"Error": "No data sent"})
     if urlquery == 'competition':
@@ -68,7 +68,7 @@ def query(urlquery):
         val = json.dumps(survivability.survivability(industry_converter.industry_converter(data['industry']),
                                                      data['state'],
                                                      data['employees'],
-                                                     data['turnover']))
+                                                     data['revenue']))
     else:
         val = json.dumps({"Error": "Not a valid url query"})
 

@@ -3,3 +3,4 @@ vagrant/
 *.iml
 venv/
 __pycache__/
+datalogic/__pycache__/
