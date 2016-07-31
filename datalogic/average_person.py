@@ -60,11 +60,13 @@ def average_person(postcode):
     for line in cur.fetchall():
         highest = line.index(str(max(list(map(int, line[2:-3])))))
         if highest == 2:
-            output["rent"] = "$0"
+            output["rent"] = [0, 0]
         elif highest == 3:
-            output["rent"] = "$1-$74"
+            output["rent"] = [1, 74]
         else:
-            output["rent"] = '$' + str(highest*25 - 25) + ' to $' + str(highest*25 - 1)
+            highval = highest*25 - 1
+            lowval = highest*25 - 2
+            output["rent"] = [lowval, highval]
 
     cars_query = "SELECT * FROM ncars_pcode WHERE postcode LIKE '%" + str(postcode) + "%'"
     cur.execute(cars_query)
