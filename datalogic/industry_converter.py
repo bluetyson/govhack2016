@@ -9,7 +9,7 @@ def industry_converter(industry):
     conn = psycopg2.connect(dbname="govhack", user="govhack", password="govhack", host="107.155.108.51")
     cur = conn.cursor()
 
-    query = "SELECT * FROM classificationdictionary2 WHERE app='" + industry.capitalize() + "'"
+    query = "SELECT * FROM classificationdictionary2 WHERE app='" + str(industry) + "'"
     cur.execute(query)
     for line in cur.fetchall():
         return line[0]
