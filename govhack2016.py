@@ -36,7 +36,17 @@ def query(urlquery):
         # returns json {Year: [TotalNumOfBusiness, EmployeesInIndustryBySaCode], ...}
         val = json.dumps(competition.get_competition(data['industry'], data['sa_code']))
     elif urlquery == "avgperson":
-        # returns json {medianIncome/quater: IntValue, ....}
+        # returns:
+        # {
+        #     "cars": Long,
+        #     "marital_status": String,
+        #     "internet": String,
+        #     "education": String,
+        #     "Median Income": Int,
+        #     "rent": String,
+        #     "dependent_children": Long,
+        #     "Median Age": Int
+        # }
         val = json.dumps(average_person.average_person(data.postcode))
     elif urlquery == "labouravail":
         # returns json {DateOfCount: LaborAvailNum, ...}
@@ -50,8 +60,6 @@ def query(urlquery):
         #             YearsInBusiness: PercentageStillInBusiness,
         #             ....
         #       }
-        #
-        #
         val = json.dumps(survivability.survivability(data.industry, data.state, data.employees, data.turnover))
     else:
         val = json.dumps({"Error": "Not a valid url query"})
