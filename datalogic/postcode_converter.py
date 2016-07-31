@@ -11,11 +11,11 @@ def postcode_converter(postcode, SA_number=2, num_or_name="num"):
     conn = psycopg2.connect(dbname="govhack", user="govhack", password="govhack", host="107.155.108.51")
     cur = conn.cursor()
 
-    if num_or_name == "num":
-        query = "SELECT sa2_code " \
-                + "FROM postcode_sa2_new" \
-                + " WHERE postcode='" \
-                + str(postcode) + "'"
+    # if num_or_name == "num":
+    query = "SELECT sa2_code " \
+            + "FROM postcode_sa2_new" \
+            + " WHERE postcode='" \
+            + str(postcode) + "'"
     cur.execute(query)
     for line in cur.fetchall():
         return line[0]
