@@ -14,8 +14,8 @@ def postcode_converter(postcode, SA_number=2, num_or_name="num"):
     # if num_or_name == "num":
     query = "SELECT sa2_code " \
             + "FROM postcode_sa2_new" \
-            + " WHERE postcode='" \
-            + str(postcode) + "'"
+            + " WHERE postcode=" \
+            + str(postcode)
     cur.execute(query)
     for line in cur.fetchall():
         return line[0]
