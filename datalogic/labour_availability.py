@@ -12,6 +12,9 @@ def labour_availability(postcode):
     conn = psycopg2.connect(dbname="govhack", user="govhack", password="govhack", host="107.155.108.51")
     cur = conn.cursor()
     cur.execute(query)
+
+    val = None
+
     for line in cur.fetchall():
         val = {"Looking for full-time work": line[1], "Looking for part-time work": line[2]}
 
