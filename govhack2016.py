@@ -36,7 +36,7 @@ def query(urlquery):
     if urlquery == 'competition':
         # returns json {Year: [TotalNumOfBusiness, EmployeesInIndustryBySaCode], ...}
         val = json.dumps(competition.get_competition(data['industry'],
-                                                     postcode_converter.postcode_converter(data['postcode'])
+                                                     data['postcode']
                                                      ))
     elif urlquery == "avgperson":
         # returns:
