@@ -35,7 +35,7 @@ def query(urlquery):
         val = json.dumps({"Error": "No data sent"})
     if urlquery == 'competition':
         # returns json {Year: [TotalNumOfBusiness, EmployeesInIndustryBySaCode], ...}
-        val = json.dumps(competition.get_competition(industry_converter.industry_converter(data['industry']),
+        val = json.dumps(competition.get_competition(data['industry'],
                                                      postcode_converter.postcode_converter(data['postcode'])
                                                      ))
     elif urlquery == "avgperson":
@@ -82,8 +82,8 @@ def query_test(urlquery):
     if urlquery == '':
         val = json.dumps({"Error": "Not a valid url query"})
     if urlquery == "competition":
-        val = json.dumps(competition.get_competition(industry_converter.industry_converter("unknown")
-                                                     , 2617))
+        val = json.dumps(competition.get_competition("Mining", 2000, 20))
+
     elif urlquery == "avgperson":
         val = json.dumps(average_person.average_person(2600))
     elif urlquery == "labouravail":
