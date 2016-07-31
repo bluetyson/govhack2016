@@ -72,4 +72,4 @@ def survivability(industry, state, employees, turnover):
     by_employee = survivability_by_employees(industry, employees, state)
     by_turnover = survivability_by_turnover(industry, turnover, state)
 
-    return {"survival_by_employee": by_employee, "survival_by_turnover": by_turnover}
+    return {"survival_by_employee": by_employee, "business_survival": by_turnover}

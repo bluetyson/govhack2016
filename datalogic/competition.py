@@ -12,11 +12,12 @@ def get_competition(industry, SA_code, employees=0):
 
     query = "SELECT * FROM business_employee_counts WHERE field_1='" + industry + "' AND field_2='" + SA_code + "'"
     cur.execute(query)
+    num_businesses = []
     for line in cur.fetchall():
         num_businesses = [int(line[8])*1000, int(line[14])*1000, int(line[20])*1000]
         columns = []
         if employees == 0:
-            columns = [3, 9, 15]
+            columns = [4, 9, 15]
         elif employees in range(1, 5):
             columns = [4, 10, 16]
         elif employees in range(5, 20):
@@ -26,9 +27,25 @@ def get_competition(industry, SA_code, employees=0):
         elif employees > 200:
             columns = [7, 13, 19]
 
-        return dict(zip(num_businesses, columns))
+    query = "SELECT " \
+            "field_" + str(columns[0]) + ", "\
+            "field_" + str(columns[1]) + ", "\
+            "field_" + str(columns[2]) + " "\
+            "FROM business_employee_counts WHERE field_1='" + industry + "' AND field_2='" + SA_code + "'"
+    cur.execute(query)
+
+    counts = list()
+    for line in cur.fetchall():
+        counts.extend(line)
+
+    print(counts)
+    print(num_businesses)
 
     cur.close()
     conn.close()
+
+    return dict(zip(num_businesses, counts))
+
+
 
 
