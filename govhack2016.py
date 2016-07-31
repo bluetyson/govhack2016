@@ -55,10 +55,7 @@ def query(urlquery):
     elif urlquery == "labouravail":
         # returns json {DateOfCount: LaborAvailNum, ...}
         val = json.dumps(labour_availability.labour_availability(data['postcode']))
-<<<<<<< HEAD
-=======
 
->>>>>>> master
     elif urlquery == "survivability":
         # returns
         #      {"survival_by_employee":
@@ -68,15 +65,11 @@ def query(urlquery):
         #             YearsInBusiness: PercentageStillInBusiness,
         #             ....
         #       }
-<<<<<<< HEAD
-        val = json.dumps(survivability.survivability(data['industry'], data['state'], data['employees'], data['revenue']))
-=======
         #
         val = json.dumps(survivability.survivability(industry_converter.industry_converter(data['industry']),
                                                      data['state'],
                                                      data['employees'],
-                                                     data['turnover']))
->>>>>>> master
+                                                     data['revenue']))
     else:
         val = json.dumps({"Error": "Not a valid url query"})
 

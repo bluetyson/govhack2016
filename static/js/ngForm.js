@@ -12,6 +12,14 @@ angular.module('app',['google.places'])
             $scope.businessInformation.state = $scope.businessInformation.bizAddress
                 .address_components[$scope.businessInformation.bizAddress.address_components.length-3].short_name;
 
+            $scope.data = {}
+            $scope.data['industry'] = $scope.businessInformation.industry;
+            $scope.data['postcode'] = $scope.businessInformation.postcode;
+            $scope.data['state'] = $scope.businessInformation.state;
+            $scope.data['employees'] = $scope.businessInformation.employees;
+            $scope.data['revenue'] = $scope.businessInformation.revenue;
+
+            console.log($scope.data);
             $scope.businessInformation.industry = $scope.businessInformation.industry;
             var data = angular.toJson($scope.businessInformation);
             // $http({
@@ -33,7 +41,7 @@ angular.module('app',['google.places'])
             $scope.loading = true;
             $scope.survLoad = true;
 
-            processResults(data);
+            processResults($scope.data);
 
         };
 
@@ -86,7 +94,12 @@ angular.module('app',['google.places'])
 
 
             // survivability bar graph
-            $http.get('/test/query/survivability').then(function success(resp){
+            $http({
+                method:'POST',
+                url:'query/survivability',
+                data: formData
+
+            }).then(function success(resp){
                 var scatterChart = document.getElementById("surviveChart");
 
                 $scope.survLoad = false;

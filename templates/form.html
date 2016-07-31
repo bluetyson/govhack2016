@@ -25,7 +25,7 @@
         <input ng-model="businessInformation.employees" required title="Your Business's Number of Employees" type="number" step="1" class="form-control"/>
 
         <label class="margin-top-10">Annual Revenue</label>
-        <input ng-model="businessInformation.bizAnnualRevenue" title="Your Business's Annual Revenue" type="number" step=".01" class="form-control"/>
+        <input ng-model="businessInformation.revenue" required title="Your Business's Annual Revenue" type="number" step=".01" class="form-control"/>
 
         <label class="margin-top-10">Desired Additional Staff</label>
         <select ng-model="businessInformation.bizDesiredAdditionalStaffRange" title="Your Business's Additional Staffing Requirements" ng-init="businessInformation.bizDesiredAdditionalStaffRange=desiredAdditionalStaffRanges[0]" ng-options="desiredAdditionalStaffRange for desiredAdditionalStaffRange in desiredAdditionalStaffRanges" class="form-control"></select>
