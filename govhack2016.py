@@ -89,7 +89,7 @@ def query_test(urlquery):
     elif urlquery == "labouravail":
         val = json.dumps(labour_availability.labour_availability(2600))
     elif urlquery == "survivability":
-        val= json.dumps(survivability.survivability('Agriculture, Forestry and Fishing', 'ACT', 9, 898))
+        val = json.dumps(survivability.survivability('Agriculture, Forestry and Fishing', 'ACT', 23, 898))
     else:
         val = json.dumps({"Error": "No data sent"})
     return val
